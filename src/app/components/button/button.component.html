@@ -1,0 +1,17 @@
+<button
+  [disabled]="disabled || isLoading"
+  [class]="
+    cn(
+      'w-full bg-teal-900 hover:bg-teal-800 disabled:bg-gray-100 disabled:cursor-not-allowed disabled:text-gray-400 px-6 h-12 rounded-2xl font-medium text-white transition-all flex items-center justify-center',
+      { 'bg-red-900 hover:bg-red-800': variant === 'danger' },
+      {
+        'bg-transparent border border-gray-800 text-gray-800 hover:bg-gray-800/5':
+          variant === 'ghost'
+      },
+      className
+    )
+  "
+>
+  <ng-content *ngIf="!isLoading"></ng-content>
+  <app-spinner *ngIf="isLoading" className="w-6 h-6"></app-spinner>
+</button>

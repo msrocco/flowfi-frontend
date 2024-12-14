@@ -1,0 +1,32 @@
+<main class="flex w-full h-full">
+  <section
+    class="w-full h-full flex items-center justify-center flex-col gap-16 lg:w-1/2"
+  >
+    <app-logo className="h-6 text-gray-500"></app-logo>
+
+    <div class="w-full max-w-[504px] px-8">
+      <ng-content></ng-content>
+    </div>
+  </section>
+
+  <section
+    class="w-1/2 h-full justify-center items-center p-8 relative hidden lg:flex"
+  >
+    <img
+      src="/illustration.png"
+      class="object-cover w-full h-full max-w-[656px] max-h-[960px] select-none rounded-[32px]"
+      alt="Illustration"
+    />
+
+    <div
+      class="max-w-[656px] bottom-8 mx-8 bg-white p-10 absolute rounded-b-[32px]"
+    >
+      <app-logo className="text-teal-900 h-8"></app-logo>
+
+      <p class="text-gray-700 font-medium text-xl mt-6">
+        Manage your personal finances easily with FlowFi. Best of all, it's
+        completely free!
+      </p>
+    </div>
+  </section>
+</main>

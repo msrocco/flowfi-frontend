@@ -1,0 +1,17 @@
+<div class="relative w-full">
+  <input
+    [id]="inputName"
+    [name]="inputName"
+    [type]="type"
+    [value]="value"
+    (input)="onInput($event)"
+    placeholder=""
+    class="w-full rounded-lg border border-gray-300 bg-white px-3 pt-4 h-[52px] text-gray-800 peer placeholder-shown:pt-0 focus:outline-none focus:border-gray-500 transition-all duration-200 ease-in-out"
+  />
+  <label
+    [for]="inputName"
+    class="absolute left-3 top-1 text-xs text-gray-700 peer-placeholder-shown:text-base peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-not(:placeholder-shown):text-[10px] peer-not(:placeholder-shown):top-3 transition-all duration-200 ease-in-out pointer-events-none"
+  >
+    {{ placeholder }}
+  </label>
+</div>
