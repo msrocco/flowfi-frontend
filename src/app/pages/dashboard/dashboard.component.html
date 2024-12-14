@@ -1,1 +1,5 @@
-<p>dashboard works!</p>
+<app-launch-screen *ngIf="isLoading"></app-launch-screen>
+
+<div *ngIf="!isLoading">
+  <h1>Bem-vindo, {{ user?.name }}!</h1>
+</div>
