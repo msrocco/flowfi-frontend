@@ -1,1 +1,46 @@
-<p>register works!</p>
+<app-auth-layout>
+  <header class="flex flex-col items-center gap-4 text-center">
+    <h1 class="text-2xl font-bold text-gray-900 tracking[-1px]">
+      Create account
+    </h1>
+
+    <p class="space-x-2">
+      <span class="text-gray-700 tracking-[-0.5px]"
+        >Already have an account?</span
+      >
+
+      <a
+        routerLink="/login"
+        class="tracking-[-0.5px] font-medium text-teal-900"
+      >
+        Log in
+      </a>
+    </p>
+  </header>
+
+  <form
+    [formGroup]="registerForm"
+    (ngSubmit)="handleSubmit()"
+    class="mt-[60px] flex flex-col gap-4"
+  >
+    <app-input formControlName="name" inputName="name" placeholder="Name" />
+
+    <app-input
+      formControlName="email"
+      inputName="email"
+      type="email"
+      placeholder="Email"
+    />
+
+    <app-input
+      formControlName="password"
+      inputName="password"
+      type="password"
+      placeholder="Password"
+    />
+
+    <app-button type="submit" className="mt-2" [isLoading]="isLoading">
+      Log in
+    </app-button>
+  </form>
+</app-auth-layout>

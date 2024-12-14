@@ -6,10 +6,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthLayoutComponent } from '../../components/auth-layout/auth-layout.component';
-import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { InputComponent } from '../../components/input/input.component';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../components/button/button.component';
+import { AuthService } from '../../services/auth.service';
+import { finalize } from 'rxjs';
 
 interface LoginForm {
   email: FormControl;
@@ -24,6 +26,7 @@ interface LoginForm {
     ButtonComponent,
     ReactiveFormsModule,
     CommonModule,
+    RouterModule,
   ],
   templateUrl: './login.component.html',
 })
@@ -31,7 +34,7 @@ export class LoginComponent {
   loginForm!: FormGroup<LoginForm>;
   isLoading = false;
 
-  constructor(private router: Router) {
+  constructor(private authService: AuthService) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
@@ -42,10 +45,15 @@ export class LoginComponent {
   }
 
   handleSubmit() {
-    console.log('submit');
-  }
+    this.isLoading = true;
 
-  navigate() {
-    this.router.navigate(['register']);
+    this.authService
+      .signin(this.loginForm.value.email, this.loginForm.value.password)
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe();
   }
 }
