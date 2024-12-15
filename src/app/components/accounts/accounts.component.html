@@ -1,0 +1,74 @@
+<div
+  class="bg-teal-900 rounded-2xl w-full h-full md:p-10 px-4 py-8 flex flex-col"
+>
+  <div *ngIf="isLoading" class="w-full h-full flex items-center justify-center">
+    <app-spinner></app-spinner>
+  </div>
+
+  <ng-container *ngIf="!isLoading">
+    <div>
+      <span class="tracking-[-0.5px] text-white block">Total balance</span>
+      <div class="flex items-center gap-2">
+        <strong
+          [ngClass]="{ 'blur-md': !areValuesVisible }"
+          class="text-2xl tracking-[-1px] text-white"
+        >
+          {{ formatCurrency(currentBalance) }}
+        </strong>
+        <button
+          (click)="toggleValuesVisibility()"
+          class="w-8 h-8 flex items-center justify-center"
+        >
+          <i
+            class="pi text-white"
+            [ngClass]="{
+              'pi-eye-slash': !areValuesVisible,
+              'pi-eye': areValuesVisible
+            }"
+          ></i>
+        </button>
+      </div>
+    </div>
+
+    <ng-container *ngIf="accounts.length === 0"> </ng-container>
+
+    <ng-container
+      *ngIf="accounts.length > 0"
+      class="flex-1 flex flex-col justify-end mt-10 md:mt-0"
+    >
+      <div class="flex-1 flex flex-col justify-end mt-10 md:mt-0">
+        <div class="flex items-center justify-between mb-4">
+          <strong class="text-white tracking-[-1px] text-lg font-bold">
+            My bank accounts
+          </strong>
+          <div class="flex">
+            <button
+              class="swiper-prev text-white w-12 py-3 px-2.5 rounded-full enabled:hover:bg-black/10 transition-colors disabled:opacity-40"
+            >
+              <i class="pi pi-chevron-left text-white"></i>
+            </button>
+            <button
+              class="swiper-next text-white w-12 py-3 px-2.5 rounded-full enabled:hover:bg-black/10 transition-colors disabled:opacity-40"
+            >
+              <i class="pi pi-chevron-right text-white"></i>
+            </button>
+          </div>
+        </div>
+
+        <swiper-container
+          #swiperRef
+          swiperElement
+          [config]="config"
+          init="false"
+        >
+          <div
+            class="swiper-slide bg-white rounded-lg p-4 !h-48"
+            *ngFor="let account of accounts"
+          >
+            <p>{{ account.name }}</p>
+          </div>
+        </swiper-container>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

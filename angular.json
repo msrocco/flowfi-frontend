@@ -29,7 +29,10 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss",
+              "node_modules/swiper/swiper-bundle.min.css"
+            ],
             "scripts": []
           },
           "configurations": {
