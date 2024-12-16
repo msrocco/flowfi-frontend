@@ -61,11 +61,15 @@
           [config]="config"
           init="false"
         >
-          <div
-            class="swiper-slide bg-white rounded-lg p-4 !h-48"
-            *ngFor="let account of accounts"
-          >
-            <p>{{ account.name }}</p>
+          <div class="swiper-slide" *ngFor="let account of accounts">
+            <app-bank-account-card
+              [name]="account.name"
+              [currentBalance]="formatCurrency(account.currentBalance)"
+              [areValuesVisible]="areValuesVisible"
+              [type]="account.type"
+              [color]="account.color"
+              (click)="openEditAccountModal(account)"
+            ></app-bank-account-card>
           </div>
         </swiper-container>
       </div>

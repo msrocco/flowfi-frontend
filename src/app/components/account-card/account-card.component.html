@@ -1,0 +1,24 @@
+<div
+  class="p-4 bg-white rounded-2xl h-[200px] flex flex-col justify-between border-b-4"
+  [ngStyle]="{ 'border-bottom-color': color }"
+  role="button"
+>
+  <div>
+    <app-bank-account-type-icon [type]="type" />
+
+    <span class="text-gray-800 font-medium tracking-[-0.5px] mt-4 block">
+      {{ name }}
+    </span>
+  </div>
+
+  <div>
+    <span
+      [class.blur-sm]="!areValuesVisible"
+      class="text-gray-800 font-medium tracking-[-0.5px] block"
+    >
+      {{ currentBalance }}
+    </span>
+
+    <small class="text-gray-600 text-sm">Saldo atual</small>
+  </div>
+</div>

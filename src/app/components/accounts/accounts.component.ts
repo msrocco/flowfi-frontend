@@ -11,6 +11,7 @@ import { SpinnerComponent } from '../spinner/spinner.component';
 import { Swiper } from 'swiper';
 import { SwiperOptions } from 'swiper/types';
 import { SwiperDirective } from '../../directives/swiper.directive';
+import { AccountCardComponent } from '../account-card/account-card.component';
 
 interface Account {
   id: string;
@@ -25,7 +26,12 @@ interface Account {
   selector: 'app-accounts',
   standalone: true,
   templateUrl: './accounts.component.html',
-  imports: [CommonModule, SpinnerComponent, SwiperDirective],
+  imports: [
+    CommonModule,
+    SpinnerComponent,
+    SwiperDirective,
+    AccountCardComponent,
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AccountsComponent implements OnInit, AfterViewInit {
@@ -47,7 +53,7 @@ export class AccountsComponent implements OnInit, AfterViewInit {
           name: 'Checking Account',
           initialBalance: 1000,
           type: 'CHECKING',
-          color: '#008080',
+          color: '#fa5252',
           currentBalance: 5000,
         },
         {
@@ -55,7 +61,7 @@ export class AccountsComponent implements OnInit, AfterViewInit {
           name: 'Savings',
           initialBalance: 500,
           type: 'CHECKING',
-          color: '#FFA500',
+          color: '#FAB005',
           currentBalance: 10000,
         },
         {
@@ -63,7 +69,7 @@ export class AccountsComponent implements OnInit, AfterViewInit {
           name: 'Investiment Account',
           initialBalance: 500,
           type: 'INVESTMENT',
-          color: '#FFA500',
+          color: '#228BE6',
           currentBalance: 10000,
         },
         {
@@ -71,7 +77,7 @@ export class AccountsComponent implements OnInit, AfterViewInit {
           name: 'Investiment Account',
           initialBalance: 500,
           type: 'INVESTMENT',
-          color: '#FFA500',
+          color: '#228BE6',
           currentBalance: 10000,
         },
         {
@@ -79,7 +85,7 @@ export class AccountsComponent implements OnInit, AfterViewInit {
           name: 'Investiment Account',
           initialBalance: 500,
           type: 'INVESTMENT',
-          color: '#FFA500',
+          color: '#228BE6',
           currentBalance: 10000,
         },
       ];
@@ -95,7 +101,9 @@ export class AccountsComponent implements OnInit, AfterViewInit {
     this.areValuesVisible = !this.areValuesVisible;
   }
 
-  openNewAccountModal() {}
+  openEditAccountModal(account: Account) {
+    console.log(account);
+  }
 
   formatCurrency(value: number) {
     return new Intl.NumberFormat('en-CA', {
